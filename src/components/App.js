@@ -8,7 +8,7 @@ import Controls from './Controls';
 
 class App extends Component {
   initialValue = {
-    minutes: 5,
+    minutes: 25,
     seconds: 0,
     breakMinutes: 5,
     breakSeconds: 0
@@ -112,6 +112,19 @@ class App extends Component {
     });
   }
 
+  changeBreakMins(e) {
+    this.setState({
+      breakMinutes: +e.target.value
+    });
+  }
+
+  changeBreakSecs(e) {
+    this.setState({
+      breakSeconds: +e.target.value
+    });
+  }
+
+
   playSound() {
     const audio = new Audio(mp3_file);
     const playPromise = audio.play();
@@ -133,7 +146,9 @@ class App extends Component {
           showCustom={() => {this.setState({customHidden: !this.state.customHidden})}}
           initialValue={this.initialValue}
           changeMins={this.changeMins.bind(this)}
+          changeBreakMins={this.changeBreakMins.bind(this)}
           changeSecs={this.changeSecs.bind(this)}
+          changeBreakSecs={this.changeBreakSecs.bind(this)}
           {...this.state}
           start={this.start.bind(this)}
           startBreak={this.startBreak.bind(this)}

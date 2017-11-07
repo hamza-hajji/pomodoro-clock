@@ -8,7 +8,9 @@ export default ({
   pause,
   reset,
   changeMins,
+  changeBreakMins,
   changeSecs,
+  changeBreakSecs,
   showCustom,
   counting,
   customHidden,
@@ -36,8 +38,8 @@ export default ({
             </div>
             <div className="break col-12">
               <span className="h3">Break:</span>&nbsp;&nbsp;
-              <input max="59" min="1" disabled={counting} type="number" onChange={changeMins} defaultValue={initialValue.breakMinutes} />
-              <input max="59" min="0" disabled={counting} type="number" onChange={changeSecs} defaultValue={initialValue.breakSeconds} />
+              <input max="59" min="1" disabled={counting} type="number" onChange={changeBreakMins} defaultValue={initialValue.breakMinutes} />
+              <input max="59" min="0" disabled={counting} type="number" onChange={changeBreakSecs} defaultValue={initialValue.breakSeconds} />
             </div>
           </div>
         )}
