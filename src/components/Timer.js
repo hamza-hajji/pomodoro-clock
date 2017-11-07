@@ -4,12 +4,26 @@ import {formatTime} from '../helpers';
 
 export default ({
   minutes,
+  breakMinutes,
   seconds,
-  danger
+  breakSeconds,
+  danger,
+  sessionTime
 }) => {
   return (
     <div className="col-12 text-center" id="timer">
-      <h2 style={{color: danger ? 'red' : '#482234'}}>{formatTime(minutes, seconds)}</h2>
+      {
+        !sessionTime ?
+        <div>
+          <h2>Break:</h2>
+          <h2 style={{color: danger ? 'red' : '#482234'}}>{formatTime(breakMinutes, breakSeconds)}</h2>
+        </div>
+        :
+        <div>
+          <h2>Session:</h2>
+          <h2 style={{color: danger ? 'red' : '#482234'}}>{formatTime(minutes, seconds)}</h2>
+        </div>
+      }
     </div>
   );
 };
