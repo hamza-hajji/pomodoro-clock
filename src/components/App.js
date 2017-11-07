@@ -7,8 +7,26 @@ import Controls from './Controls';
 
 class App extends Component {
   state = {
-    minutes: 25,
+    minutes: 5,
     seconds: 0
+  }
+
+  startCountDown() {
+    let int = window.setInterval(() => {
+      if (this.state.seconds === 0) {
+        this.setState({
+          minutes: this.state.minutes - 1,
+          seconds: 60
+        });
+      } else {
+        this.setState({
+          seconds: this.state.seconds - 1
+        });
+      }
+      if (this.state.minutes === 0 && this.state.seconds === 0) {
+        window.clearInterval(int);
+      }
+    }, 10);
   }
 
   render() {
