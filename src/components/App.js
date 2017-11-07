@@ -23,6 +23,7 @@ class App extends Component {
   }
 
   start() {
+    this.setState({...this.initialValue});
     if (this.state.minutes <= 0 && this.state.seconds <= 0) {
       this.reset();
     }
@@ -46,14 +47,16 @@ class App extends Component {
           counting: false,
           sessionTime: false
         });
+        this.setState({...this.initialValue});
       }
       if (this.state.minutes === 1 && this.state.seconds === 0) {
         this.setState({danger: true});
       }
-    }, 10);
+    }, 1000);
   }
 
   startBreak() {
+    this.setState({...this.initialValue});
     if (this.state.breakMinutes <= 0 && this.state.breakSeconds <= 0) {
       this.reset();
     }
@@ -77,11 +80,12 @@ class App extends Component {
           counting: false,
           sessionTime: true
         });
+        this.setState({...this.initialValue});
       }
       if (this.state.breakMinutes === 1 && this.state.breakSeconds === 0) {
         this.setState({danger: true});
       }
-    }, 10);
+    }, 1000);
   }
 
   pause() {
@@ -101,27 +105,23 @@ class App extends Component {
   }
 
   changeMins(e) {
-    this.setState({
-      minutes: +e.target.value
-    });
+    this.initialValue.minutes = +e.target.value;
+    this.setState({...this.initialValue});
   }
 
   changeSecs(e) {
-    this.setState({
-      seconds: +e.target.value
-    });
+    this.initialValue.minutes = +e.target.value;
+    this.setState({...this.initialValue});
   }
 
   changeBreakMins(e) {
-    this.setState({
-      breakMinutes: +e.target.value
-    });
+    this.initialValue.breakMinutes = +e.target.value;
+    this.setState({...this.initialValue});
   }
 
   changeBreakSecs(e) {
-    this.setState({
-      breakSeconds: +e.target.value
-    });
+    this.initialValue.breakSecs = +e.target.value;
+    this.setState({...this.initialValue});
   }
 
 
