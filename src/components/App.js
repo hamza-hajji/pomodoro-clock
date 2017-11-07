@@ -6,6 +6,11 @@ import Timer from './Timer';
 import Controls from './Controls';
 
 class App extends Component {
+  state = {
+    minutes: 25,
+    seconds: 0
+  }
+
   render() {
     return (
       <div className="container">
@@ -13,7 +18,7 @@ class App extends Component {
           <Header />
         </div>
         <div className="row">
-          <Timer />
+          <Timer {...this.state} />
         </div>
         <div className="row">
           <Controls />
