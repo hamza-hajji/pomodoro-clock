@@ -12,3 +12,7 @@ header {
   font-size: 3rem;
   font-weight: bold;
 }
+
+#inputs {
+  margin-top: 1rem;
+}

@@ -22,7 +22,7 @@ class App extends Component {
       if (this.state.seconds === 0) {
         this.setState({
           minutes: this.state.minutes - 1,
-          seconds: 60
+          seconds: 59
         });
       } else {
         this.setState({
@@ -56,6 +56,18 @@ class App extends Component {
     }
   }
 
+  changeMins(e) {
+    this.setState({
+      minutes: +e.target.value
+    });
+  }
+
+  changeSecs(e) {
+    this.setState({
+      seconds: +e.target.value
+    });
+  }
+
   render() {
     return (
       <div className="container">
@@ -65,13 +77,14 @@ class App extends Component {
         <div className="row">
           <Timer {...this.state} />
         </div>
-        <div className="row">
-          <Controls
-            start={this.start.bind(this)}
-            pause={this.pause.bind(this)}
-            reset={this.reset.bind(this)}
-          />
-        </div>
+        <Controls
+          counting={this.state.counting}
+          changeMins={this.changeMins.bind(this)}
+          changeSecs={this.changeSecs.bind(this)}
+          start={this.start.bind(this)}
+          pause={this.pause.bind(this)}
+          reset={this.reset.bind(this)}
+        />
       </div>
     );
   }
