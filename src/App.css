@@ -1,0 +1,14 @@
+header {
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+}
+
+#timer {
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+#timer h2 {
+  font-size: 3rem;
+  font-weight: bold;
+}
