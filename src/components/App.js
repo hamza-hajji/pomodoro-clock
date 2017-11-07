@@ -8,10 +8,11 @@ import Controls from './Controls';
 class App extends Component {
   state = {
     minutes: 5,
-    seconds: 0
+    seconds: 0,
+    danger: false
   }
 
-  startCountDown() {
+  start() {
     let int = window.setInterval(() => {
       if (this.state.seconds === 0) {
         this.setState({
@@ -29,6 +30,20 @@ class App extends Component {
     }, 10);
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.setState.minutes === 1) {
+      this.setState({danger: true});
+    }
+  }
+
+  pause() {
+
+  }
+
+  reset() {
+
+  }
+
   render() {
     return (
       <div className="container">
@@ -39,7 +54,11 @@ class App extends Component {
           <Timer {...this.state} />
         </div>
         <div className="row">
-          <Controls />
+          <Controls
+            start={this.start.bind(this)}
+            pause={this.pause.bind(this)}
+            reset={this.reset.bind(this)}
+          />
         </div>
       </div>
     );
