@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
+import mp3_file from '../notification.mp3';
 
 import Header from './Header';
 import Timer from './Timer';
@@ -47,6 +48,12 @@ class App extends Component {
     }, 1000);
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.minutes === 0 && this.state.seconds === 0) {
+      this.playSound();
+    }
+  }
+
   pause() {
     this.setState({counting: false});
     window.clearInterval(this.int);
@@ -70,7 +77,16 @@ class App extends Component {
     });
   }
 
+  playSound() {
+    const audio = new Audio(mp3_file);
+    const playPromise = audio.play();
+    if (playPromise !== null){
+        playPromise.catch(() => {  })
+    }
+  }
+
   render() {
+    console.log(this.state.counting);
     return (
       <div className="container">
         <div className="row">
