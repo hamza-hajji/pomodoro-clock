@@ -9,7 +9,7 @@ export default ({
 }) => {
   return (
     <div className="col-12 text-center" id="timer">
-      <h2 style={{color: danger ? 'red' : '#000'}}>{formatTime(minutes, seconds)}</h2>
+      <h2 style={{color: danger ? 'red' : '#482234'}}>{formatTime(minutes, seconds)}</h2>
     </div>
   );
 };

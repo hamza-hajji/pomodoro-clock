@@ -1,5 +1,7 @@
 import React from 'react';
 
+import 'font-awesome/css/font-awesome.min.css'
+
 export default ({
   start,
   pause,
@@ -14,23 +16,21 @@ export default ({
     <div  className="text-center">
       <div id="buttons" className="row">
         <div className="col-12">
-          <button onClick={start}>Start</button>&nbsp;&nbsp;
-          <button onClick={pause}>Pause</button>&nbsp;&nbsp;
-          <button onClick={reset}>Reset</button>
+          <button onClick={start}><i className="fa fa-play"></i></button>&nbsp;&nbsp;
+          <button onClick={pause}><i className="fa fa-pause"></i></button>&nbsp;&nbsp;
+          <button onClick={reset}><i className="fa fa-refresh"></i></button>
         </div>
       </div>
-      <button onClick={showCustom}>Customize</button>
-      {customHidden ? null
-      : (
-        <div id="inputs" className="row">
-          <div className="input">
-            <input disabled={counting} type="number" onChange={changeMins} defaultValue={25} />
+      <button id="custom" onClick={showCustom}>Customize</button>
+      <div id="inputs" className="row">
+        {customHidden ? null
+        : (
+          <div className="col-12">
+              <input max="59" min="0" disabled={counting} type="number" onChange={changeMins} defaultValue={25} />
+              <input max="59" min="0" disabled={counting} type="number" onChange={changeSecs} defaultValue={0} />
           </div>
-          <div className="input">
-            <input disabled={counting} type="number" onChange={changeSecs} defaultValue={0} />
-          </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 };
