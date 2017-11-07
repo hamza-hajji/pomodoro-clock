@@ -9,13 +9,15 @@ class App extends Component {
   state = {
     minutes: 5,
     seconds: 0,
-    danger: false
+    danger: false,
+    counting: false
   }
 
   start() {
     if (this.state.minutes <= 0 && this.state.seconds <= 0) {
       this.reset();
     }
+    this.setState({counting: true});
     this.int = window.setInterval(() => {
       if (this.state.seconds === 0) {
         this.setState({
@@ -29,23 +31,29 @@ class App extends Component {
       }
       if (this.state.minutes <= 0 && this.state.seconds <= 0) {
         window.clearInterval(this.int);
-        this.setState({danger: false});
+        this.setState({
+          danger: false,
+          counting: false
+        });
       }
       if (this.state.minutes === 1 && this.state.seconds === 0) {
         this.setState({danger: true});
       }
-    }, 50);
+    }, 1000);
   }
 
   pause() {
+    this.setState({counting: false});
     window.clearInterval(this.int);
   }
 
   reset() {
-    this.setState({
-      minutes: 5,
-      seconds: 0
-    });
+    if (!this.state.counting) {
+      this.setState({
+        minutes: 5,
+        seconds: 0
+      });
+    }
   }
 
   render() {
