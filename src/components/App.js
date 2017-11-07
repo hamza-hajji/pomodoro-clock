@@ -13,7 +13,7 @@ class App extends Component {
   }
 
   start() {
-    let int = window.setInterval(() => {
+    this.int = window.setInterval(() => {
       if (this.state.seconds === 0) {
         this.setState({
           minutes: this.state.minutes - 1,
@@ -24,20 +24,18 @@ class App extends Component {
           seconds: this.state.seconds - 1
         });
       }
-      if (this.state.minutes === 0 && this.state.seconds === 0) {
-        window.clearInterval(int);
+      if (this.state.minutes <= 0 && this.state.seconds <= 0) {
+        window.clearInterval(this.int);
+        this.setState({danger: false});
       }
-    }, 10);
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (this.setState.minutes === 1) {
-      this.setState({danger: true});
-    }
+      if (this.state.minutes === 1 && this.state.seconds === 0) {
+        this.setState({danger: true});
+      }
+    }, 50);
   }
 
   pause() {
-
+    window.clearInterval(this.int);
   }
 
   reset() {
