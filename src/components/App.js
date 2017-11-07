@@ -6,11 +6,16 @@ import Timer from './Timer';
 import Controls from './Controls';
 
 class App extends Component {
+  initialValue = {
+    minutes: 25,
+    seconds: 0
+  }
+
   state = {
-    minutes: 5,
-    seconds: 0,
+    ...this.initialValue,
     danger: false,
-    counting: false
+    counting: false,
+    customHidden: true
   }
 
   start() {
@@ -49,10 +54,7 @@ class App extends Component {
 
   reset() {
     if (!this.state.counting) {
-      this.setState({
-        minutes: 5,
-        seconds: 0
-      });
+      this.setState(this.initialValue);
     }
   }
 
@@ -78,7 +80,9 @@ class App extends Component {
           <Timer {...this.state} />
         </div>
         <Controls
+          showCustom={() => {this.setState({customHidden: !this.state.customHidden})}}
           counting={this.state.counting}
+          customHidden={this.state.customHidden}
           changeMins={this.changeMins.bind(this)}
           changeSecs={this.changeSecs.bind(this)}
           start={this.start.bind(this)}

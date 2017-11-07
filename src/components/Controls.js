@@ -4,25 +4,33 @@ export default ({
   start,
   pause,
   reset,
-  counting,
   changeMins,
-  changeSecs
+  changeSecs,
+  showCustom,
+  counting,
+  customHidden
 }) => {
   return (
-    <div>
-      <div className="row text-center">
-        <div className="col-12 mx-auto">
+    <div  className="text-center">
+      <div id="buttons" className="row">
+        <div className="col-12">
           <button onClick={start}>Start</button>&nbsp;&nbsp;
           <button onClick={pause}>Pause</button>&nbsp;&nbsp;
           <button onClick={reset}>Reset</button>
         </div>
       </div>
-      <div id="inputs" className="row text-center">
-        <div className="col-12 mx-auto">
-          Min: <input onChange={changeMins} disabled={counting} type="number" step="5" defaultValue={5}/>&nbsp;&nbsp;&nbsp;
-          Sec: <input onChange={changeSecs} disabled={counting} type="number" step="5" defaultValue={0}/>
+      <button onClick={showCustom}>Customize</button>
+      {customHidden ? null
+      : (
+        <div id="inputs" className="row">
+          <div className="input">
+            <input disabled={counting} type="number" onChange={changeMins} defaultValue={25} />
+          </div>
+          <div className="input">
+            <input disabled={counting} type="number" onChange={changeSecs} defaultValue={0} />
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
