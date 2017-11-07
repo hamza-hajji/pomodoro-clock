@@ -13,6 +13,9 @@ class App extends Component {
   }
 
   start() {
+    if (this.state.minutes <= 0 && this.state.seconds <= 0) {
+      this.reset();
+    }
     this.int = window.setInterval(() => {
       if (this.state.seconds === 0) {
         this.setState({
@@ -39,7 +42,10 @@ class App extends Component {
   }
 
   reset() {
-
+    this.setState({
+      minutes: 5,
+      seconds: 0
+    });
   }
 
   render() {
